@@ -2,6 +2,7 @@
   position: sticky;
   top: 0;
   display: flex;
+  background-color: white;
   justify-content: space-evenly;
   border-bottom: 1px solid lightgray;
   padding-top: 10px;
@@ -23,8 +24,10 @@
   align-items: center;
   border-radius: 5px;
   outline: none;
-  height: 22px;
+  height: 30px;
+  width: 150px;
   background: #eef3f8;
+  margin: 5px;
 }
 .header_search > input {
   outline: none;

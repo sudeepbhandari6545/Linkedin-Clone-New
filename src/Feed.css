@@ -33,3 +33,8 @@
 .feed_input > form > button {
   display: none;
 }
+
+.input_option {
+  display: flex;
+  justify-content: space-evenly;
+}
