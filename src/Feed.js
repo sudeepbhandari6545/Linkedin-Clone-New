@@ -9,6 +9,7 @@ import CalendarViewDayIcon from '@material-ui/icons/CalendarViewDay'
 import './Feed.css'
 //other
 import InputOption from './InputOption'
+import Post from './Post'
 
 function Feed() {
   return (
@@ -32,6 +33,8 @@ function Feed() {
           />
         </div>
       </div>
+      {/* Posts */}
+      <Post />
     </div>
   )
 }
