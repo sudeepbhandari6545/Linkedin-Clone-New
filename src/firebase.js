@@ -1,22 +1,18 @@
-import firebase from 'firebase'
+import firebase from 'firebase/compat/app'
+import 'firebase/compat/auth'
+import 'firebase/compat/firestore'
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyCN-nY-ZJZgxwEGFgqMMZqxi8nD1mZVQis',
-
-  authDomain: 'linkedin-clone-dfa4d.firebaseapp.com',
-
-  projectId: 'linkedin-clone-dfa4d',
-
-  storageBucket: 'linkedin-clone-dfa4d.appspot.com',
-
-  messagingSenderId: '526614062190',
-
-  appId: '1:526614062190:web:f5512c655aed8aeb13327f',
-
-  measurementId: 'G-01J0RRLV5K',
+  apiKey: 'AIzaSyC9z7OVuyrHri_9bHKbAbgeEKqGwrNOAkI',
+  authDomain: 'linkedin-clone-54e91.firebaseapp.com',
+  projectId: 'linkedin-clone-54e91',
+  storageBucket: 'linkedin-clone-54e91.appspot.com',
+  messagingSenderId: '36133241572',
+  appId: '1:36133241572:web:7d8d5fcfd8fd6ef99ae2f1',
 }
 
-const firebaseApp = firebase.initialzeapp(firebaseConfig)
+const firebaseApp = firebase.initializeApp(firebaseConfig)
 const db = firebaseApp.firestore()
 const auth = firebase.auth()
+
 export { db, auth }

@@ -10,7 +10,7 @@ import SendOutlinedIcon from '@material-ui/icons/SendOutlined'
 //style
 import './Post.css'
 
-function Post({ name, description, message, potoUrl }) {
+function Post() {
   return (
     <div className="post">
       <div className="post_header">
