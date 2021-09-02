@@ -9,36 +9,41 @@ import { auth } from './firebase'
 import './Login.css'
 
 function Login() {
+  const [email, setEmail] = useState('')
   const [name, setName] = useState('')
   const [porfilePic, setPorfilePic] = useState('')
-  const [email, setEmail] = useState('')
+
   const [password, setPassword] = useState('')
   const dispatch = useDispatch()
 
-  const registerToApp = (e) => {
+  const loginToApp = (e) => {
     e.preventDefault()
   }
-  const registerNow = () => {
+
+  const register = () => {
     if (!name) {
       return alert('Please enter the full name')
     }
-    auth.createUserWithEmailAndPassword(email, password).then((userAuth) => {
-      userAuth.user
-        .updateProfile({
-          displayName: name,
-          photoURL: porfilePic,
-        })
-        .then(() => {
-          dispatch(
-            login({
-              email: userAuth.user.email,
-              uid: userAuth.user.uid,
-              displayName: name,
-              phoyoUrl: porfilePic,
-            }),
-          )
-        })
-    })
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((userAuth) => {
+        userAuth.user
+          .updateProfile({
+            displayName: name,
+            photoURL: porfilePic,
+          })
+          .then(() => {
+            dispatch(
+              login({
+                email: userAuth.user.email,
+                uid: userAuth.user.uid,
+                displayName: name,
+                photoUrl: porfilePic,
+              }),
+            )
+          })
+      })
+      .catch((error) => alert(error))
   }
   return (
     <div className="login">
@@ -62,8 +67,8 @@ function Login() {
         <input
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          type="email"
           placeholder="Email"
+          type="email"
         />
         <input
           value={password}
@@ -71,11 +76,13 @@ function Login() {
           type="password"
           placeholder="Password"
         />
-        <button onClick={registerToApp}>Sign In</button>
+        <button type="submit" onClick={loginToApp}>
+          Sign In
+        </button>
       </form>
       <p>
         Not a Member?
-        <span onClick={registerNow} className="register_button">
+        <span onClick={register} className="register_button">
           Register Now
         </span>
       </p>
