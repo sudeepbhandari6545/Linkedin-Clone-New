@@ -10,18 +10,18 @@ import SendOutlinedIcon from '@material-ui/icons/SendOutlined'
 //style
 import './Post.css'
 
-function Post() {
+function Post({ description, message }) {
   return (
     <div className="post">
       <div className="post_header">
         <Avatar />
         <div className="post_info">
           <h4>sudeep bhandari</h4>
-          <p>Description</p>
+          <p>{description}</p>
         </div>
       </div>
       <div className="post_bosy">
-        <p>This is a test</p>
+        <p>{message}</p>
       </div>
       <div className="post_buttons">
         <InputOption Icon={ThumbUpAltOutlinedIcon} title="Like" color="gray" />
