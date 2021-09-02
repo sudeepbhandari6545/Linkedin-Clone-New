@@ -1,5 +1,9 @@
 import React from 'react'
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+
+import { login } from './features/counter/userSlice'
+import { auth } from './firebase'
 
 //style
 import './Login.css'
@@ -9,11 +13,33 @@ function Login() {
   const [porfilePic, setPorfilePic] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const dispatch = useDispatch()
 
   const registerToApp = (e) => {
     e.preventDefault()
   }
-  const registerNow = () => {}
+  const registerNow = () => {
+    if (!name) {
+      return alert('Please enter the full name')
+    }
+    auth.createUserWithEmailAndPassword(email, password).then((userAuth) => {
+      userAuth.user
+        .updateProfile({
+          displayName: name,
+          photoURL: porfilePic,
+        })
+        .then(() => {
+          dispatch(
+            login({
+              email: userAuth.user.email,
+              uid: userAuth.user.uid,
+              displayName: name,
+              phoyoUrl: porfilePic,
+            }),
+          )
+        })
+    })
+  }
   return (
     <div className="login">
       <img
