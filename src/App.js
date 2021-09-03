@@ -8,6 +8,7 @@ import Header from './Header'
 import Login from './Login'
 import Post from './Post'
 import SideBar from './SideBar'
+import Widgets from './Widgets'
 
 function App() {
   const user = useSelector(selectUser)
@@ -41,6 +42,7 @@ function App() {
         <div className="app_body">
           <SideBar />
           <Feed />
+          <Widgets />
         </div>
       )}
     </div>
