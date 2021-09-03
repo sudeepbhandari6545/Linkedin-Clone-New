@@ -11,8 +11,18 @@ import NotificationsIcon from '@material-ui/icons/Notifications'
 import './Header.css'
 //other
 import HeaderOption from './HeaderOption'
+import { logout } from './features/counter/userSlice'
+import { useDispatch } from 'react-redux'
+import { auth } from './firebase'
 
 function Header() {
+  const dispatch = useDispatch()
+
+  const logoutofApp = () => {
+    dispatch(logout())
+    auth.signOut()
+  }
+
   return (
     <>
       <div className="header">
@@ -35,6 +45,7 @@ function Header() {
           <HeaderOption
             avatar="https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg"
             title="Me"
+            onClick={logoutofApp}
           />
         </div>
       </div>
