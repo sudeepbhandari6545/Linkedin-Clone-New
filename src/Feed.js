@@ -13,31 +13,33 @@ import InputOption from './InputOption'
 import Post from './Post'
 import { db } from './firebase'
 import firebase from 'firebase/compat/app'
+import { useSelector } from 'react-redux'
+import { selectUser } from './features/counter/userSlice'
 
 function Feed() {
+  const user = useSelector(selectUser)
   const [input, setInput] = useState('')
   const [posts, setPosts] = useState([])
 
   useEffect(() => {
     db.collection('posts')
-      .orderBy('timestamp', 'desc')
-      .onSnapshot((snapshot) =>
-        setPosts(
-          snapshot.docs.map((doc) => ({
-            id: doc.id,
-            data: doc.data(),
-          })),
-        ),
-      )
+    .onSnapshot((snapshot) =>
+      setPosts(
+        snapshot.docs.map((doc) => ({
+          id: doc.id,
+          data: doc.data(),
+        })),
+      ),
+    )
   }, [])
 
   const sendPost = (e) => {
     e.preventDefault()
     db.collection('posts').add({
-      name: 'sudeep bhandari',
-      description: 'this is a test',
+      name: user.displayName,
+      description: user.email,
       message: input,
-      photoUrl: '',
+      photoUrl: user.photoUrl || '',
       timestanp: firebase.firestore.FieldValue.serverTimestamp(),
     })
     setInput('')
@@ -70,7 +72,7 @@ function Feed() {
           />
         </div>
       </div>
-      {/* Posts */}
+
       {posts.map(({ id, data: { name, description, message, photoUrl } }) => (
         <Post
           key={id}

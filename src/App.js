@@ -6,6 +6,7 @@ import Feed from './Feed'
 import { auth } from './firebase'
 import Header from './Header'
 import Login from './Login'
+import Post from './Post'
 import SideBar from './SideBar'
 
 function App() {
